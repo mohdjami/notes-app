@@ -1,308 +1,237 @@
-# My Awesome RESTful API
+My Awesome RESTful API
+Overview
 
-## Overview
+This RESTful API is constructed using Express and incorporates Supabase and Prisma ORM for database operations. It boasts features such as user authentication, authorization, rate limiting, request throttling, and a potent search functionality based on text indexing for high performance. The application undergoes thorough testing with Jest and Supertest, ensuring the reliability of all API endpoints.
+Features
 
-This RESTful API is built with Express and utilizes Supabase and Prisma ORM for database operations. It includes features such as user authentication, authorization, rate limiting, request throttling, and a powerful search functionality based on text indexing for high performance. The application is thoroughly tested with Jest and Supertest, ensuring the reliability of all API endpoints.
+1. RESTful API
 
-## Features
+Implemented a RESTful API using the Express framework for building web applications and APIs in Node.js. 2. Database
 
-### 1. RESTful API
+Leveraged Supabase, a powerful and scalable database, and Prisma ORM for efficient data storage and retrieval. 3. User Authentication and Authorization
 
-Implemented a RESTful API using the Express framework for building web applications and APIs in Node.js.
+Implemented user authentication and authorization to secure access to various endpoints. 4. Rate Limiting and Request Throttling
 
-### 2. Database
-
-Utilized Supabase, a powerful and scalable database, and Prisma ORM for efficient data storage and retrieval.
-
-### 3. User Authentication and Authorization
-
-Implemented user authentication and authorization to secure access to various endpoints.
-
-### 4. Rate Limiting and Request Throttling
-
-Included rate limiting and request throttling mechanisms to handle high traffic, ensuring optimal performance and resource utilization.
-
-### 5. Search Functionality
+Included rate limiting and request throttling mechanisms to handle high traffic, ensuring optimal performance and resource utilization. 5. Search Functionality
 
 Implemented a robust search functionality allowing users to search for notes based on keywords. Text indexing has been employed for high-performance search operations.
-
-## Testing
+Testing
 
 The application is thoroughly tested using Jest, a popular JavaScript testing framework, and Supertest for integration testing. Unit tests and integration tests cover all API endpoints, ensuring the reliability and correctness of the application.
+Getting Started
+Authentication
 
-## Getting Started
+    Sign Up
+        Endpoint: POST /api/auth/signup
 
-## Overview
+    bash
 
-This RESTful API allows users to manage their notes, including creating, updating, and deleting notes. Additionally, users can share notes with others and search for notes based on keywords.
+# Request
 
-## Authentication
+{
+"email": "user@example.com"
+}
 
-### 1. Sign Up
+# Response
 
-#### Endpoint
+{
+"token": "<your-access-token>",
+"status": "success",
+"user": {
+"id": 1,
+"email": "user@example.com"
+}
+}
 
-POST /api/auth/signup
+Login
+
+    Endpoint: POST /api/auth/login
 
 bash
 
-#### Request
+# Request
 
-````json
 {
-  "email": "user@example.com"
+"email": "user@example.com"
 }
 
-Response
-
-json
+# Response
 
 {
-  "token": "<your-access-token>",
-  "status": "success",
-  "user": {
-    "id": 1,
-    "email": "user@example.com"
-  }
+"token": "<your-access-token>",
+"status": "success",
+"user": {
+"id": 1,
+"email": "user@example.com"
 }
-
-2. Login
-Endpoint
-
-bash
-
-POST /api/auth/login
-
-Request
-
-json
-
-{
-  "email": "user@example.com"
-}
-
-Response
-
-json
-
-{
-  "token": "<your-access-token>",
-  "status": "success",
-  "user": {
-    "id": 1,
-    "email": "user@example.com"
-  }
 }
 
 Note Endpoints
-3. Get All Notes
-Endpoint
 
-bash
+    Get All Notes
+        Endpoint: GET /api/notes
 
-GET /api/notes
+    bash
 
-Request
-
-json
+# Request
 
 Headers:
-  Authorization: Bearer <your-access-token>
+Authorization: Bearer <your-access-token>
 
-Response
-
-json
+# Response
 
 [
-  {
-    "id": 1,
-    "content": "Note content 1"
-  },
-  {
-    "id": 2,
-    "content": "Note content 2"
-  }
+{
+"id": 1,
+"content": "Note content 1"
+},
+{
+"id": 2,
+"content": "Note content 2"
+}
 ]
 
-4. Get Note by ID
-Endpoint
+Get Note by ID
+
+    Endpoint: GET /api/notes/:id
 
 bash
 
-GET /api/notes/:id
-
-Request
-
-json
+# Request
 
 Headers:
-  Authorization: Bearer <your-access-token>
+Authorization: Bearer <your-access-token>
 Params:
-  id: Note ID
+id: Note ID
 
-Response
-
-json
+# Response
 
 {
-  "id": 1,
-  "content": "Note content 1"
+"id": 1,
+"content": "Note content 1"
 }
 
-5. Create New Note
-Endpoint
+Create New Note
+
+    Endpoint: POST /api/notes
 
 bash
 
-POST /api/notes
-
-Request
-
-json
+# Request
 
 Headers:
-  Authorization: Bearer <your-access-token>
+Authorization: Bearer <your-access-token>
 Body:
-
-```json
 {
-  "content": "New note content"
+"content": "New note content"
 }
 
-Response
-
-json
+# Response
 
 {
-  "data": {
-    "note": {
-      "content": "new note content",
-      "id": 6,
-      "userId": 3
-    }
-  },
-  "message": "note created"
+"data": {
+"note": {
+"content": "new note content",
+"id": 6,
+"userId": 3
+}
+},
+"message": "note created"
 }
 
-6. Update Note by ID
-Endpoint
+Update Note by ID
+
+    Endpoint: PUT /api/notes/:id
 
 bash
 
-PUT /api/notes/:id
-
-Request
-
-json
+# Request
 
 Headers:
-  Authorization: Bearer <your-access-token>
+Authorization: Bearer <your-access-token>
 Params:
-  id: Note ID
+id: Note ID
 Body:
-
-```json
 {
-  "content": "Updated note content"
+"content": "Updated note content"
 }
 
-Response
-
-json
+# Response
 
 {
-  "data": {
-    "note": {
-      "content": "old note content",
-      "id": 6,
-      "userId": 3
-    }
-  },
-  "message": "note updated"
+"data": {
+"note": {
+"content": "old note content",
+"id": 6,
+"userId": 3
+}
+},
+"message": "note updated"
 }
 
-7. Delete Note by ID
-Endpoint
+Delete Note by ID
+
+    Endpoint: DELETE /api/notes/:id
 
 bash
 
-DELETE /api/notes/:id
-
-Request
-
-json
+# Request
 
 Headers:
-  Authorization: Bearer <your-access-token>
+Authorization: Bearer <your-access-token>
 Params:
-  id: Note ID
+id: Note ID
 
-Response
-
-yaml
+# Response
 
 Status: 204 No Content
 
-8. Share Note with Another User
-Endpoint
+Share Note with Another User
+
+    Endpoint: POST /api/notes/:id/share
 
 bash
 
-POST /api/notes/:id/share
-
-Request
-
-json
+# Request
 
 Headers:
-  Authorization: Bearer <your-access-token>
+Authorization: Bearer <your-access-token>
 Params:
-  id: Note ID
+id: Note ID
 Body:
-
-```json
 {
-  "email": "email@example.com"
+"email": "email@example.com"
 }
 
-Response
-
-json
+# Response
 
 {
-  "message": "note shared"
+"message": "note shared"
 }
 
-9. Search for Notes
-Endpoint
+Search for Notes
 
-sql
+    Endpoint: GET /api/search?q=:query
 
-GET /api/search?q=:query
+bash
 
-Request
+        # Request
+        Headers:
+          Authorization: Bearer <your-access-token>
+        Query:
+          q: Search query
 
-json
-
-Headers:
-  Authorization: Bearer <your-access-token>
-Query:
-  q: Search query
-
-Response
-
-json
-
-[
-  {
-    "id": 1,
-    "content": "Note content 1"
-  },
-  {
-    "id": 3,
-    "content": "Updated note content"
-  }
-]
+        # Response
+        [
+          {
+            "id": 1,
+            "content": "Note content 1"
+          },
+          {
+            "id": 3,
+            "content": "Updated note content"
+          }
+        ]
 
 Error Responses
 
@@ -325,34 +254,34 @@ bash
 
 npm test
 
-markdown
-
-## Development Environment
+Development Environment
 
 To set up the development environment, follow these steps:
 
-1. Clone the repository:
+    Clone the repository:
 
-```bash
+    bash
+
 git clone https://github.com/your-username/your-repo.git
 
-    Install dependencies:
+Install dependencies:
 
 bash
 
 cd your-repo
 npm install
 
-    Check Node.js version:
+Check Node.js version:
 
 Ensure that you have Node.js version 14.0.0 or newer installed. You can use NVM (Node Version Manager) or install it manually.
 
 bash
 
 # Example using NVM
+
 nvm use
 
-    Set up the environment variables:
+Set up the environment variables:
 
 Create a .env file in the root directory and add the following variables:
 
@@ -364,11 +293,10 @@ SECRET_KEY=your-secret-key
 
 Replace your-database-url and your-secret-key with your actual database URL and a secret key for token generation.
 
-    Run the development server:
-
+Run the development server:
+V
 bash
 
 npm start
 
 The API will be accessible at http://localhost:3000
-````
