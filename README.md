@@ -277,3 +277,7 @@ Ensure that you have Node.js version 21.0.0 or latest installed. You can use NVM
 # Example using NVM
 nvm use
 ```
+
+# API DOCUMENTATION WITH POSTMAN
+
+Please refer https://documenter.getpostman.com/view/26354863/2s9YynnQ2g
