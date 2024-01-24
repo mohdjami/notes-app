@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.login = exports.createUser = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const db_1 = require("../lib/db");
-const bcrypt_1 = __importDefault(require("bcrypt"));
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const client_1 = require("@prisma/client");
 const createToken = async (id) => {
     return await jsonwebtoken_1.default.sign({
@@ -41,8 +41,8 @@ const createUser = async (req, res, next) => {
                 message: "Password must be at least 6 characters",
             });
         }
-        const salt = await bcrypt_1.default.genSalt(10);
-        const hashedPassword = await bcrypt_1.default.hash(data.password, salt);
+        const salt = await bcryptjs_1.default.genSalt(10);
+        const hashedPassword = await bcryptjs_1.default.hash(data.password, salt);
         const existingUser = await db_1.db.user.findUnique({
             where: { email: data.email },
         });
@@ -86,7 +86,7 @@ const login = async (req, res, next) => {
                 message: "User does not exist",
             });
         }
-        const validPassword = await bcrypt_1.default.compare(data.password, user.password);
+        const validPassword = await bcryptjs_1.default.compare(data.password, user.password);
         if (!validPassword) {
             return res.status(401).json({
                 message: "Invalid password",

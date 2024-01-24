@@ -16,7 +16,7 @@ describe("Authentication Endpoints", () => {
   it("should log in an existing user", async () => {
     const response = await request(app)
       .post("/api/auth/login")
-      .send({ email: "test5@5gmail.com", password: "123123" });
+      .send({ email: "test5@5test.com", password: "123123" });
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty("user");
