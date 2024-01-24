@@ -1,13 +1,13 @@
 {
   "name": "notesharing-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Backend of Note Sharing App",
+  "main": "server.ts",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",
     "dev": "ts-node-dev server.ts",
-    "postinstall": "npm rebuild bcrypt --build-from-source",
+    "postinstall": "npm rebuild bcrypt --build-from-source && prisma generate",
     "start": "cross-env NODE_ENV=production ts-node server.ts",
     "start:dev": "cross-env NODE_ENV=development ts-node-dev server.ts",
     "build": "tsc"
