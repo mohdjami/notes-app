@@ -36,7 +36,6 @@ const protectedRoute = async (
           )
         );
       }
-      console.log(req.user);
       req.user = currentUser;
     }
 

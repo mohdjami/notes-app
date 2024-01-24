@@ -115,7 +115,13 @@ export const updateNoteById = async (
       data: {
         content: req.body.content,
       },
+      select: {
+        id: true,
+        content: true,
+        userId: true,
+      },
     });
+
     if (!note) {
       handleNoteNotFoundError(res);
       return;
@@ -140,6 +146,9 @@ export const deleteNoteById = async (
   next: NextFunction
 ) => {
   try {
+    await db.sharedNote.deleteMany({
+      where: { noteId: Number(req.params.id) },
+    });
     const note = await db.note.delete({
       where: { id: Number(req.params.id) },
     });
@@ -156,7 +165,7 @@ export const deleteNoteById = async (
   } catch (error) {
     console.log(error);
     res.status(500).json({
-      message: "Note does not exist",
+      message: "Error deleting the note",
     });
   }
 };
