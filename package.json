@@ -7,7 +7,7 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "dev": "ts-node-dev server.ts",
-    "postinstall": "npm rebuild bcryptjs --build-from-source && prisma generate",
+    "postinstall": "prisma generate",
     "start": "cross-env NODE_ENV=production ts-node server.ts",
     "start:dev": "cross-env NODE_ENV=development ts-node-dev server.ts",
     "build": "npx tsc -p ."
