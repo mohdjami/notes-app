@@ -10,7 +10,7 @@
     "postinstall": "npm rebuild bcrypt --build-from-source && prisma generate",
     "start": "cross-env NODE_ENV=production ts-node server.ts",
     "start:dev": "cross-env NODE_ENV=development ts-node-dev server.ts",
-    "build": "tsc"
+    "build": "npx tsc -p ."
   },
   "keywords": [],
   "author": "",
@@ -48,6 +48,6 @@
     "typescript": "^5.3.3"
   },
   "engines": {
-    "node": ">=21.0.0"
+    "node": ">=18.0.0"
   }
 }
