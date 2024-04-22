@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { db } from "../lib/db";
 import { Request, Response, NextFunction } from "express";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 import { User } from "../types/User";
 import { Prisma } from "@prisma/client";
 declare global {
@@ -57,8 +57,8 @@ export const createUser = async (
         message: "Password must be at least 6 characters",
       });
     }
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(data.password, salt);
+    const salt = await bcryptjs.genSalt(10);
+    const hashedPassword = await bcryptjs.hash(data.password, salt);
 
     const existingUser = await db.user.findUnique({
       where: { email: data.email },
@@ -108,7 +108,7 @@ export const login = async (
         message: "User does not exist",
       });
     }
-    const validPassword = await bcrypt.compare(data.password, user.password);
+    const validPassword = await bcryptjs.compare(data.password, user.password);
     if (!validPassword) {
       return res.status(401).json({
         message: "Invalid password",

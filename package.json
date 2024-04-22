@@ -1,8 +1,8 @@
 {
   "name": "notesharing-app",
   "version": "1.0.0",
-  "description": "Note sharing application",
-  "main": "server.ts",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",
@@ -17,12 +17,13 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.7.1",
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "express": "^4.18.2",
     "express-rate-limit": "^7.1.5",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
+    "node": "^21.6.0",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
@@ -31,6 +32,7 @@
     "@babel/preset-typescript": "^7.23.3",
     "@jest/globals": "^29.7.0",
     "@types/bcrypt": "^5.0.2",
+    "@types/bcryptjs": "^2.4.6",
     "@types/cookie-parser": "^1.4.6",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.11",
@@ -40,13 +42,13 @@
     "babel-jest": "^29.7.0",
     "cross-env": "^7.0.3",
     "jest": "^29.7.0",
-    "prisma": "^5.7.1",
+    "prisma": "^5.8.1",
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.3.3"
   },
   "engines": {
-    "node": ">=21.0.0"
+    "node": ">=18.0.0"
   }
 }
