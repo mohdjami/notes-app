@@ -21,7 +21,7 @@ RUN npx prisma generate
 RUN npm run build
 
 # Your app binds to port 8080 so you'll use the EXPOSE instruction to have it mapped by the docker daemon
-EXPOSE 8080
+EXPOSE 8000
 
 # Define the command to run your app using CMD which defines your runtime
 CMD [ "npm", "start" ]

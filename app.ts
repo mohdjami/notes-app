@@ -24,6 +24,11 @@ app.use(cookieParser());
 app.use(express.static(`${__dirname}/public`));
 
 // routes
+
+app.get("/", (req, res) => {
+  res.send("API is running....");
+});
+
 // mounting the routers
 app.use("/api/auth", authRoutes);
 app.use("/api", notesRoutes);

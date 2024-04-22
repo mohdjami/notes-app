@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-
-    "moduleResolution": "node",
     "target": "es2018",
+    "module": "commonjs",
+    "rootDir": "./",
+    "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["**/*.ts"],
+  "include": ["*.ts"],
   "exclude": ["node_modules"]
 }

@@ -1,16 +1,16 @@
 {
   "name": "notesharing-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Note sharing application",
+  "main": "server.ts",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "dev": "ts-node-dev server.ts",
-    "postinstall": "npm rebuild bcrypt --build-from-source",
-    "start": "cross-env NODE_ENV=production ts-node server.ts",
-    "start:dev": "cross-env NODE_ENV=development ts-node-dev server.ts",
-    "build": "tsc"
+    "postinstall": "prisma generate",
+    "start": "node dist/server",
+    "build": "npx tsc -p .",
+    "dev": "npx tsc-watch --onSuccess \"node dist/server.js\"",
+    "debug": "ndb server.ts"
   },
   "keywords": [],
   "author": "",
