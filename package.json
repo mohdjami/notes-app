@@ -1,8 +1,8 @@
 {
   "name": "notesharing-app",
   "version": "1.0.0",
-  "description": "Backend of Note Sharing App",
-  "main": "server.ts",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "Note Sharing",
+  "name": "note-sharing",
   "builds": [{ "src": "app.ts", "use": "@vercel/node" }],
   "routes": [{ "src": "/(.*)", "dest": "/app.ts" }]
 }
