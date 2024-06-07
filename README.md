@@ -270,6 +270,12 @@ cd your-repo
 npm install
 ```
 
+Dont forget to setup Prisma
+
+```bash
+npx prisma generate
+```
+
 Check Node.js version:
 Ensure that you have Node.js version 21.0.0 or latest installed. You can use NVM (Node Version Manager) or install it manually.
 

@@ -12,6 +12,48 @@ const app: Express = express();
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+import helmet from "helmet";
+const xss = require("xss-clean");
+import hpp from "hpp";
+import mongoSanitize = require("express-mongo-sanitize");
+
+// middleware
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+app.use(helmet());
+
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+//limiting the number of requests from the same IP
+const Limitter = rateLimit({
+  max: 100,
+  windowMs: 60 * 60 * 1000,
+  message: "too many requests from this IP please try again in an hour",
+});
+app.use("/api", Limitter);
+//body parser reading data from body into req.body
+app.use(express.json({ limit: "10kb" }));
+//data sanitization against NoSQL query injection
+app.use(mongoSanitize());
+//data sanitization against XSS
+app.use(xss());
+//prwent parameter pollution
+app.use(
+  hpp({
+    whitelist: [
+      "duration",
+      "ratingsAverage",
+      "ratingsQuantity",
+      "maxGroupSize",
+      "difficulty",
+      "price",
+    ],
+  })
+);
+//data sanitization against NoSQL query injection
+//serving static files
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // Limit each IP to 100 requests per windowMs
